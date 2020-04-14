@@ -36,6 +36,7 @@ public enum Module {
     MODULE60(60.0),
     MODULE80(80.0),
     MODULE100(100.0);
+
     @Getter
     Double value;
 
