@@ -1,4 +1,4 @@
-package ru.itis.software.engineering.gera.library;
+package ru.itis.software.engineering.gear.library;
 
 import org.junit.Test;
 import ru.itis.software.engineering.gear.library.GearLibrary;

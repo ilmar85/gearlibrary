@@ -1,22 +1,20 @@
 package ru.itis.software.engineering.gear.library.belt;
 
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public abstract class AbstractBeltGear {
 
-    private double drivingPulleyDiameter;
-    private double drivenPulleyDiameter;
     private double ratio;
     private double slipRatio;
     private double centerDistance;
-    private double beltLength;
-    private double drivingShaftPower;
-    private double drivenShaftPower;
-    private double drivingShaftAngularVelocity;
     private double rotationSpeedIdling;
     private double rotationSpeedLoad;
 
     /**
      * Расчёт передаточного числа
+     *
      * @param drivingPulleyDiameter - диаметр ведущего шкива, мм
      * @param drivenPulleyDiameter - диаметр ведомого шкива, мм
      * @param slipRatio - коэффициент скольжения
@@ -26,6 +24,7 @@ public abstract class AbstractBeltGear {
 
     /**
      * Расчёт диаметра ведомого шкива
+     *
      * @param drivingPulleyDiameter - диаметр ведущего шкива, мм
      * @param ratio                 - передаточное число
      * @param slipRatio             - коэффициент скольжения
@@ -35,6 +34,7 @@ public abstract class AbstractBeltGear {
 
     /**
      * Расчёт длины ремня (без учёта припуска на соединение концов)
+     *
      * @param drivingPulleyDiameter - диаметр ведущего шкива, мм
      * @param drivenPulleyDiameter  - диаметр ведомого шкива, мм
      * @param centerDistance        - межосевое расстояние (расстояние между геометрическими осями валов), мм
@@ -44,18 +44,20 @@ public abstract class AbstractBeltGear {
         double firstTemp = 2 * centerDistance;
         double secondTemp = Math.PI/2 * (drivingPulleyDiameter + drivenPulleyDiameter);
         double thirdTemp = Math.pow(drivenPulleyDiameter - drivingPulleyDiameter, 2) / (4 * centerDistance);
+        double result = firstTemp + secondTemp + thirdTemp;
 
-        return firstTemp + secondTemp + thirdTemp;
+        return new BigDecimal(result).setScale(0, RoundingMode.HALF_UP).doubleValue();
     }
 
     /**
      * Расчёт межосевого расстояния (расстояние между геометрическими осями валов)
+     *
      * @param drivingPulleyDiameter - диаметр ведущего шкива, мм
      * @param drivenPulleyDiameter  - диаметр ведомого шкива, мм
      * @param beltLength            - длина ремня, мм
      * @return межосевое расстояние, мм
      */
-    public Double calculateCenterDistance(double drivingPulleyDiameter, double drivenPulleyDiameter, double beltLength) {
+    public double calculateCenterDistance(double drivingPulleyDiameter, double drivenPulleyDiameter, double beltLength) {
         double firstTemp = 2 * beltLength;
         double secondTemp = Math.PI * (drivenPulleyDiameter - drivingPulleyDiameter);
         double thirdTemp = Math.pow((2 * beltLength - secondTemp), 2);
@@ -67,28 +69,28 @@ public abstract class AbstractBeltGear {
 
     /**
      * Расчёт КПД ременной передачи
+     *
      * @param drivingShaftPower - мощность на ведущем валу, кВт
      * @param drivenShaftPower  - мощность на ведомом валу, кВт
      * @return коэффициент полезного действия
      */
     public double calculateEfficiency(double drivingShaftPower, double drivenShaftPower) {
-        return drivenShaftPower / drivingShaftPower;
+        double result = drivenShaftPower / drivingShaftPower;
+
+        return new BigDecimal(result).setScale(3, RoundingMode.HALF_UP).doubleValue();
     }
 
-    public double getDrivingPulleyDiameter() {
-        return drivingPulleyDiameter;
-    }
+    /**
+     * Расчёт окружной скорости на шкивах
+     *
+     * @param pulleyDiameter - диаметр шкива, мм
+     * @param rotationSpeed  - частота вращения, мин(-1)
+     * @return окружная скорость, м/с
+     */
+    public double peripheralSpeed(double pulleyDiameter, double rotationSpeed) {
+        double result = (Math.PI * pulleyDiameter * rotationSpeed) / 60000;
 
-    public void setDrivingPulleyDiameter(double drivingPulleyDiameter) {
-        this.drivingPulleyDiameter = drivingPulleyDiameter;
-    }
-
-    public double getDrivenPulleyDiameter() {
-        return drivenPulleyDiameter;
-    }
-
-    public void setDrivenPulleyDiameter(double drivenPulleyDiameter) {
-        this.drivenPulleyDiameter = drivenPulleyDiameter;
+        return new BigDecimal(result).setScale(0, RoundingMode.HALF_UP).doubleValue();
     }
 
     public double getRatio() {
@@ -113,38 +115,6 @@ public abstract class AbstractBeltGear {
 
     public void setCenterDistance(double centerDistance) {
         this.centerDistance = centerDistance;
-    }
-
-    public double getBeltLength() {
-        return beltLength;
-    }
-
-    public void setBeltLength(double beltLength) {
-        this.beltLength = beltLength;
-    }
-
-    public double getDrivingShaftPower() {
-        return drivingShaftPower;
-    }
-
-    public void setDrivingShaftPower(double drivingShaftPower) {
-        this.drivingShaftPower = drivingShaftPower;
-    }
-
-    public double getDrivenShaftPower() {
-        return drivenShaftPower;
-    }
-
-    public void setDrivenShaftPower(double drivenShaftPower) {
-        this.drivenShaftPower = drivenShaftPower;
-    }
-
-    public double getDrivingShaftAngularVelocity() {
-        return drivingShaftAngularVelocity;
-    }
-
-    public void setDrivingShaftAngularVelocity(double drivingShaftAngularVelocity) {
-        this.drivingShaftAngularVelocity = drivingShaftAngularVelocity;
     }
 
     public double getRotationSpeedIdling() {

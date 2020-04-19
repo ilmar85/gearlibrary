@@ -1,5 +1,8 @@
 package ru.itis.software.engineering.gear.library.belt;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Расчёт плоскоременной передачи
  */
@@ -8,6 +11,7 @@ public class FlatBeltGear extends AbstractBeltGear {
     /**
      * Расчёт диаметра ведущего шкива (малого)
      * Полученный диаметр округляют до ближайшего стандартного значения ГОСТ 23831-79
+     *
      * @param drivingShaftPower           - мощность на ведущем валу, кВт
      * @param drivingShaftAngularVelocity - угловая скорость ведущего вала, рад/с
      * @return диаметра ведущего шкива, мм.
@@ -15,39 +19,36 @@ public class FlatBeltGear extends AbstractBeltGear {
      */
     public double calculateDrivingPulleyDiameter(double drivingShaftPower, double drivingShaftAngularVelocity) {
         double drivingShaft = drivingShaftPower/drivingShaftAngularVelocity;
-        return 0.055 * Math.cbrt(drivingShaft);
+        double result = 550 * Math.cbrt(drivingShaft);
+
+        return new BigDecimal(result).setScale(0, RoundingMode.HALF_UP).doubleValue();
     }
 
     @Override
     public double calculateDrivenPulleyDiameter(double drivingPulleyDiameter, double ratio, double slipRatio) {
-        return ratio * drivingPulleyDiameter * (1 - slipRatio);
-    }
+        double result = ratio * drivingPulleyDiameter * (1 - slipRatio);
 
-//Скорости ременных передач
+        return new BigDecimal(result).setScale(0, RoundingMode.HALF_UP).doubleValue();
+    }
 
     @Override
     public double calculateRatio(double drivingPulleyDiameter, double drivenPulleyDiameter, double slipRatio) {
-        return drivenPulleyDiameter / drivingPulleyDiameter * (1 - slipRatio);
+        double result = drivenPulleyDiameter / drivingPulleyDiameter * (1 - slipRatio);
+
+        return new BigDecimal(result).setScale(0, RoundingMode.HALF_UP).doubleValue();
     }
 
     /**
      * Расчёт коэффициента скольжения
+     *
      * @param rotationSpeedIdling - частота вращения на холостом ходу, мин(-1)
      * @param rotationSpeedLoad   - частота вращения под нагрузкой, мин(-1)
      * @return коэффициент скольжения
      */
     public double calculateSlipRatio(double rotationSpeedIdling, double rotationSpeedLoad) {
-        return (rotationSpeedIdling - rotationSpeedLoad) / rotationSpeedIdling;
-    }
+        double result = (rotationSpeedLoad - rotationSpeedIdling) / rotationSpeedIdling;
 
-    /**
-     * Расчёт окружной скорости на шкивах
-     * @param pulleyDiameter - диаметр шкива, мм
-     * @param rotationSpeed  - частота вращения, мин(-1)
-     * @return окружная скорость, м/с
-     */
-    public double peripheralSpeed(double pulleyDiameter, double rotationSpeed) {
-        return (Math.PI * pulleyDiameter * rotationSpeed) / 60000;
+        return new BigDecimal(result).setScale(1, RoundingMode.HALF_UP).doubleValue();
     }
 
 
