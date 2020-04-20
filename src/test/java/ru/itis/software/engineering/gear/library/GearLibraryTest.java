@@ -1,3 +1,5 @@
+package ru.itis.software.engineering.gear.library;
+
 import org.junit.Test;
 import ru.itis.software.engineering.gear.library.GearLibrary;
 
@@ -6,8 +8,7 @@ import static ru.itis.software.engineering.gear.library.GearLibrary.GEAR_LIBRARY
 
 public class GearLibraryTest {
     @Test
-    public  void Test(){
-        assertEquals(GEAR_LIBRARY.getGearRatio(4L,2L),
-                new Long(2L));
+    public void Test(){
+        assertEquals(GEAR_LIBRARY.getGearRatio(4L,2L), Long.valueOf(2L));
     }
 }
