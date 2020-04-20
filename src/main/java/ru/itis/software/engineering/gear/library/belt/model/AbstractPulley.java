@@ -3,7 +3,7 @@ package ru.itis.software.engineering.gear.library.belt.model;
 /**
  * Абстрактный класс для шкивов
  */
-public abstract class Pulley {
+public abstract class AbstractPulley {
 
     /**
      * Диаметр шкива
