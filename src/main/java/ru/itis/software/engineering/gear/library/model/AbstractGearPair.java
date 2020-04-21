@@ -1,5 +1,13 @@
 package ru.itis.software.engineering.gear.library.model;
 
+import ru.itis.software.engineering.gear.library.GearLibrary;
+import ru.itis.software.engineering.gear.library.Module;
+
+import javax.swing.plaf.PanelUI;
+
+/**
+ * абстрактная пара шестерен
+ */
 public abstract class AbstractGearPair {
 
     /**
@@ -11,6 +19,14 @@ public abstract class AbstractGearPair {
      * расстояние между центральным
      */
     Float centerDistance;
+
+
+
+    public AbstractGearPair(AbstractGear abstractGear1, AbstractGear abstractGear2, Float centerDistance) {
+        this.abstractGear1 = abstractGear1;
+        this.abstractGear2 = abstractGear2;
+        this.centerDistance = centerDistance;
+    }
 
     public AbstractGear getAbstractGear1() {
         return abstractGear1;
@@ -34,5 +50,8 @@ public abstract class AbstractGearPair {
 
     public void setCenterDistance(Float centerDistance) {
         this.centerDistance = centerDistance;
+    }
+    public Double calculateRatio(){
+        return GearLibrary.GEAR_LIBRARY.getGearRatio(abstractGear1.gearTeeth,abstractGear2.gearTeeth);
     }
 }
