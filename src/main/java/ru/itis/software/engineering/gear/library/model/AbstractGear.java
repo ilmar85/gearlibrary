@@ -2,7 +2,6 @@ package ru.itis.software.engineering.gear.library.model;
 
 import ru.itis.software.engineering.gear.library.GearLibrary;
 import ru.itis.software.engineering.gear.library.Module;
-import ru.itis.software.engineering.gear.library.gearExample.Gear;
 
 /**
  * абстрактная шестерня в вакууме

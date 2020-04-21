@@ -7,11 +7,11 @@ public enum GearLibrary {
     GEAR_LIBRARY;
 
 
-    /***
-     *
-     * @param gearTeeth1
-     * @param gearTeeth2
-     * @return
+    /**
+     * метод возвращает передаточное соотношение
+     * @param gearTeeth1 количество зубьев у шестерни 1
+     * @param gearTeeth2 количество зубьев у шестерни 2
+     * @return передаточное соотношение
      */
 
     public Double getGearRatio(Long gearTeeth1, Long gearTeeth2) {
@@ -20,12 +20,12 @@ public enum GearLibrary {
 
 
     /**
-     * Метод возвращает расстояние между центрами шесте
-     * @param gearTeeth1
-     * @param gearTeeth2
-     * @param teethAngle
+     * Метод возвращает расстояние между центрами шестерен
+     * @param gearTeeth1 количество зубьев у шестерни 1
+     * @param gearTeeth2 количество зубьев у шестерни 2
+     * @param teethAngle   угол зуба
      * @param module
-     * @return
+     * @return Расстояние между центрами
      */
     public Double getGearCenterDistance(Long gearTeeth1, Long gearTeeth2, Double teethAngle, Module module) {
         return (0.5 * (module.getValue() * ((gearTeeth1 + gearTeeth2) / (2 * Math.cos(teethAngle)))));
@@ -34,8 +34,8 @@ public enum GearLibrary {
     /**
      * метод возвращает делительный диаметр шестерни
      *
-     * @param gearTeeth
-     * @param teethAngle
+     * @param gearTeeth  количество зубьев
+     * @param teethAngle   угол зуба
      * @param module
      * @return
      */
@@ -46,8 +46,8 @@ public enum GearLibrary {
 
     /**
      * метод возвращает диаметр вершин зубьев шестерни
-     * @param gearTeeth
-     * @param teethAngle
+     * @param gearTeeth  количество зубьев
+     * @param teethAngle   угол зуба
      * @param module
      * @param x1 коэфициент смещения колеса
      * @param deltaY
@@ -63,8 +63,8 @@ public enum GearLibrary {
 
     /**
      * метод возвращает диаметры впадин зубьев шестерни
-     * @param gearTeeth
-     * @param teethAngle
+     * @param gearTeeth  количество зубьев
+     * @param teethAngle   угол зуба
      * @param module
      * @param x1
      * @param deltaY
