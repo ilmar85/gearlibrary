@@ -18,6 +18,14 @@ public enum GearLibrary {
         return gearTeeth1 / gearTeeth2;
     }
 
+    /**
+     * Метод возвращает расстояние между центрами шесте
+     * @param gearTeeth1
+     * @param gearTeeth2
+     * @param teethAngle
+     * @param module
+     * @return
+     */
     public Double getGearCenterDistance(Long gearTeeth1, Long gearTeeth2, Float teethAngle, Module module) {
         return (0.5 * (module.getValue() * ((gearTeeth1 + gearTeeth2) / (2 * Math.cos(teethAngle)))));
     }

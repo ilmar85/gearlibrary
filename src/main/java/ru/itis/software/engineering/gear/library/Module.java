@@ -1,6 +1,5 @@
 package ru.itis.software.engineering.gear.library;
 
-import lombok.Getter;
 
 public enum Module {
     MODULE0_05(0.05),
@@ -37,8 +36,11 @@ public enum Module {
     MODULE80(80.0),
     MODULE100(100.0);
 
-    @Getter
     Double value;
+
+    public Double getValue() {
+        return value;
+    }
 
     Module(Double i) {
         this.value = i;
