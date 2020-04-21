@@ -19,6 +19,10 @@ public abstract class AbstractGear {
      * выбранный модуль зубьев шестерни
      */
     Module gearModule;
+    /**
+     * угол наклона зуба шестерни
+     */
+    Float teethAngle;
 
     public Float getDiameter() {
         return diameter;
@@ -50,5 +54,13 @@ public abstract class AbstractGear {
 
     public void setGearModule(Module gearModule) {
         this.gearModule = gearModule;
+    }
+
+    public Float getTeethAngle() {
+        return teethAngle;
+    }
+
+    public void setTeethAngle(Float teethAngle) {
+        this.teethAngle = teethAngle;
     }
 }

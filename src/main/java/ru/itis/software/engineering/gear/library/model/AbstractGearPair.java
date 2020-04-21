@@ -1,5 +1,7 @@
 package ru.itis.software.engineering.gear.library.model;
 
+import ru.itis.software.engineering.gear.library.GearLibrary;
+
 public abstract class AbstractGearPair {
 
     /**
@@ -34,5 +36,8 @@ public abstract class AbstractGearPair {
 
     public void setCenterDistance(Float centerDistance) {
         this.centerDistance = centerDistance;
+    }
+    public Double calculateRatio(){
+        return GearLibrary.GEAR_LIBRARY.getGearRatio(abstractGear1.gearTeeth,abstractGear2.gearTeeth);
     }
 }

@@ -14,9 +14,10 @@ public enum GearLibrary {
      * @return
      */
 
-    public Long getGearRatio(Long gearTeeth1, Long gearTeeth2) {
-        return gearTeeth1 / gearTeeth2;
+    public Double getGearRatio(Long gearTeeth1, Long gearTeeth2) {
+        return (double) gearTeeth1 / (double) gearTeeth2;
     }
+
 
     /**
      * Метод возвращает расстояние между центрами шесте
