@@ -65,4 +65,15 @@ public abstract class AbstractPulley {
     public void setRotationSpeed(double rotationSpeed) {
         this.rotationSpeed = rotationSpeed;
     }
+
+    public AbstractPulley() {
+    }
+
+    public AbstractPulley(double diameter, double width, double shaftPower, double shaftAngularVelocity, double rotationSpeed) {
+        this.diameter = diameter;
+        this.width = width;
+        this.shaftPower = shaftPower;
+        this.shaftAngularVelocity = shaftAngularVelocity;
+        this.rotationSpeed = rotationSpeed;
+    }
 }
