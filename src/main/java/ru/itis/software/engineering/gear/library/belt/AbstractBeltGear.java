@@ -12,6 +12,23 @@ public abstract class AbstractBeltGear {
     private double rotationSpeedIdling;
     private double rotationSpeedLoad;
 
+    public AbstractBeltGear() {
+    }
+
+    public AbstractBeltGear(double ratio, double slipRatio, double centerDistance, double rotationSpeedIdling, double rotationSpeedLoad) {
+        this.ratio = ratio;
+        this.slipRatio = slipRatio;
+        this.centerDistance = centerDistance;
+        this.rotationSpeedIdling = rotationSpeedIdling;
+        this.rotationSpeedLoad = rotationSpeedLoad;
+    }
+
+    public AbstractBeltGear(double slipRatio, double rotationSpeedIdling, double rotationSpeedLoad) {
+        this.slipRatio = slipRatio;
+        this.rotationSpeedIdling = rotationSpeedIdling;
+        this.rotationSpeedLoad = rotationSpeedLoad;
+    }
+
     /**
      * Расчёт передаточного числа
      *

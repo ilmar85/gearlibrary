@@ -26,6 +26,18 @@ public abstract class AbstractPulley {
      */
     protected double rotationSpeed;
 
+    public AbstractPulley() {
+
+    }
+
+    public AbstractPulley(double diameter, double width, double shaftPower, double shaftAngularVelocity, double rotationSpeed) {
+        this.diameter = diameter;
+        this.width = width;
+        this.shaftPower = shaftPower;
+        this.shaftAngularVelocity = shaftAngularVelocity;
+        this.rotationSpeed = rotationSpeed;
+    }
+
     public double getDiameter() {
         return diameter;
     }
