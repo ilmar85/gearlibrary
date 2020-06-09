@@ -7,6 +7,13 @@ public class Belt {
      */
     private double length;
 
+    public Belt() {
+    }
+
+    public Belt(double length) {
+        this.length = length;
+    }
+
     public double getLength() {
         return length;
     }
